@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือการตรวจ MRI สำหรับผู้ป่วย</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-deep: #1a4f8a;
+    --blue-mid:  #2d7dd2;
+    --blue-soft: #e8f2fc;
+    --blue-pale: #f0f7ff;
+    --teal:      #1a9e8a;
+    --teal-soft: #e4f7f4;
+    --amber:     #e6931a;
+    --amber-soft:#fff6e4;
+    --red-soft:  #fff0f0;
+    --red-text:  #c0392b;
+    --green:     #1e9664;
+    --green-soft:#e8f7f1;
+    --gray-100:  #f7f8fa;
+    --gray-200:  #eef0f3;
+    --gray-400:  #b0b8c4;
+    --gray-600:  #6b7685;
+    --gray-800:  #2d3748;
+    --white:     #ffffff;
+    --shadow-sm: 0 1px 4px rgba(0,0,0,.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--gray-800);
+    background: var(--gray-100);
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--blue-deep);
+    color: var(--white);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: .75rem 1.5rem;
+  }
+  .logo-mark {
+    width: 40px; height: 40px;
+    background: var(--blue-mid);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .site-title { font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .site-sub   { font-size: 12px; opacity: .75; font-weight: 300; }
+
+  /* ─── NAV TABS ─── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav::-webkit-scrollbar { height: 3px; }
+  nav::-webkit-scrollbar-thumb { background: var(--gray-200); }
+  .nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 1rem;
+    white-space: nowrap;
+  }
+  .nav-btn {
+    padding: .65rem 1rem;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-600);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { color: var(--blue-mid); }
+  .nav-btn.active { color: var(--blue-deep); border-bottom-color: var(--blue-mid); font-weight: 600; }
+
+  /* ─── MAIN ─── */
+  main { max-width: 960px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── HERO BANNER ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    color: var(--white);
+    margin-bottom: 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 180px; height: 180px;
+    background: rgba(255,255,255,.07);
+    border-radius: 50%;
+  }
+  .hero-icon { font-size: 2.2rem; margin-bottom: .5rem; }
+  .hero h1 { font-size: 1.55rem; font-weight: 700; line-height: 1.35; margin-bottom: .4rem; }
+  .hero p  { font-size: 15px; opacity: .88; font-weight: 300; }
+
+  /* ─── SECTION HEADINGS ─── */
+  .sec-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin: 1.75rem 0 .75rem;
+    padding-bottom: .4rem;
+    border-bottom: 2px solid var(--blue-soft);
+  }
+
+  /* ─── CONTENT CARDS ─── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ─── INFO BOXES ─── */
+  .box-blue   { background: var(--blue-pale);  border-left: 4px solid var(--blue-mid);  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .85rem 1.1rem; margin-bottom: 1rem; }
+  .box-teal   { background: var(--teal-soft);  border-left: 4px solid var(--teal);      border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .85rem 1.1rem; margin-bottom: 1rem; }
+  .box-amber  { background: var(--amber-soft); border-left: 4px solid var(--amber);     border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .85rem 1.1rem; margin-bottom: 1rem; }
+  .box-red    { background: var(--red-soft);   border-left: 4px solid var(--red-text);  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .85rem 1.1rem; margin-bottom: 1rem; }
+  .box-green  { background: var(--green-soft); border-left: 4px solid var(--green);     border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: .85rem 1.1rem; margin-bottom: 1rem; }
+  .box-title  { font-weight: 700; margin-bottom: .35rem; font-size: 15px; }
+
+  /* ─── STEP LIST ─── */
+  .step-list { list-style: none; }
+  .step-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 1.2rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    margin-bottom: .75rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--blue-deep);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px;
+  }
+  .step-body h3 { font-size: 15px; font-weight: 700; color: var(--blue-deep); margin-bottom: .3rem; }
+  .step-body ul { padding-left: 1.1rem; }
+  .step-body li { margin-bottom: .2rem; font-size: 15px; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: .65rem;
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 15.5px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .chk {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border: 2px solid var(--gray-400);
+    border-radius: 5px;
+    margin-top: 3px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .2s;
+  }
+  .chk.checked { background: var(--green); border-color: var(--green); }
+  .chk.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .chk-text { flex: 1; }
+  .chk-text.checked { text-decoration: line-through; color: var(--gray-400); }
+
+  /* ─── FAQ ─── */
+  .faq-item {
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    margin-bottom: .6rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: .9rem 1.2rem;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+    transition: background .15s;
+  }
+  .faq-q:hover { background: var(--blue-pale); }
+  .faq-arrow { font-size: 13px; transition: transform .25s; flex-shrink: 0; color: var(--gray-400); }
+  .faq-a {
+    display: none;
+    padding: .7rem 1.2rem 1rem;
+    font-size: 15px;
+    color: var(--gray-800);
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    line-height: 1.75;
+  }
+  .faq-item.open .faq-q { background: var(--blue-pale); }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-item.open .faq-a { display: block; }
+
+  /* ─── GRID ─── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* ─── CTA BUTTON ─── */
+  .cta-row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
+  .cta-btn {
+    padding: .6rem 1.25rem;
+    background: var(--blue-deep);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .18s, transform .12s;
+  }
+  .cta-btn:hover  { background: var(--blue-mid); }
+  .cta-btn:active { transform: scale(.97); }
+  .cta-btn.outline {
+    background: var(--white);
+    color: var(--blue-deep);
+    border: 1.5px solid var(--blue-deep);
+  }
+  .cta-btn.outline:hover { background: var(--blue-pale); }
+
+  /* ─── MISC ─── */
+  ul.bullet  { padding-left: 1.3rem; }
+  ul.bullet li { margin-bottom: .35rem; font-size: 15.5px; }
+  .tag {
+    display: inline-block;
+    background: var(--blue-soft);
+    color: var(--blue-deep);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-right: 4px;
+  }
+  .divider { border: none; border-top: 1px solid var(--gray-200); margin: 1.4rem 0; }
+  .text-sm  { font-size: 14px; color: var(--gray-600); }
+
+  /* ─── CONTACT GRID ─── */
+  .contact-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 1.4rem;
+    box-shadow: var(--shadow-sm);
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--blue-soft);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .contact-label { font-size: 12px; color: var(--gray-600); margin-bottom: 2px; }
+  .contact-val   { font-size: 16px; font-weight: 600; color: var(--blue-deep); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 13px;
+    color: var(--gray-600);
+    border-top: 1px solid var(--gray-200);
+    margin-top: 2rem;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media print {
+    header, nav { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">🧲</div>
+    <div>
+      <div class="site-title">คู่มือการตรวจ MRI สำหรับผู้ป่วย</div>
+      <div class="site-sub">ข้อมูลเพื่อเตรียมความพร้อมก่อนวันตรวจ</div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner" id="navBar">
+    <button class="nav-btn active" onclick="showPage(0)">🏠 หน้าแรก</button>
+    <button class="nav-btn" onclick="showPage(1)">MRI คืออะไร</button>
+    <button class="nav-btn" onclick="showPage(2)">ประโยชน์</button>
+    <button class="nav-btn" onclick="showPage(3)">ขั้นตอนตรวจ</button>
+    <button class="nav-btn" onclick="showPage(4)">เตรียมตัว</button>
+    <button class="nav-btn" onclick="showPage(5)">ข้อห้าม</button>
+    <button class="nav-btn" onclick="showPage(6)">สารทึบรังสี</button>
+    <button class="nav-btn" onclick="showPage(7)">กลัวที่แคบ</button>
+    <button class="nav-btn" onclick="showPage(8)">คำถามที่พบบ่อย</button>
+    <button class="nav-btn" onclick="showPage(9)">📞 ติดต่อ</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     หน้า 1 — ยินดีต้อนรับ
+═══════════════════════════════════════════ -->
+<div class="page active" id="pg0">
+  <div class="hero">
+    <div class="hero-icon">🏥</div>
+    <h1>ยินดีต้อนรับสู่การตรวจ MRI</h1>
+    <p>คุณไม่ได้เผชิญสิ่งนี้คนเดียว — ทีมงานของเราพร้อมดูแลคุณทุกขั้นตอน<br>
+    การตรวจ MRI <strong>ปลอดภัย ไม่เจ็บปวด และใช้เวลาไม่นาน</strong></p>
+  </div>
+
+  <div class="box-blue">
+    <div class="box-title">📌 คุณจะได้เรียนรู้อะไรจากเว็บไซต์นี้</div>
+    <ul class="bullet">
+      <li>MRI คืออะไร และทำงานอย่างไร</li>
+      <li>ขั้นตอนการตรวจมีอะไรบ้าง</li>
+      <li>จะเตรียมตัวอย่างไรก่อนวันตรวจ</li>
+      <li>มีข้อห้ามหรือข้อควรระวังอะไรบ้าง</li>
+      <li>หากกลัวที่แคบ ทำอย่างไรได้บ้าง</li>
+      <li>ต้องการความช่วยเหลือ ติดต่อใครได้บ้าง</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">🗂️ เมนูแนะนำสำหรับเริ่มต้น</div>
+  <div class="grid-2">
+    <div class="card" style="cursor:pointer" onclick="showPage(1)">
+      <div style="font-size:1.6rem;margin-bottom:.3rem">🧲</div>
+      <strong>ยังไม่รู้ว่า MRI คืออะไร?</strong>
+      <div class="text-sm">เริ่มที่หน้า "MRI คืออะไร" →</div>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="showPage(4)">
+      <div style="font-size:1.6rem;margin-bottom:.3rem">✅</div>
+      <strong>ต้องการเตรียมตัวก่อนตรวจ</strong>
+      <div class="text-sm">ดูหน้า "การเตรียมตัว" →</div>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="showPage(7)">
+      <div style="font-size:1.6rem;margin-bottom:.3rem">💛</div>
+      <strong>รู้สึกกลัวหรือวิตกกังวล</strong>
+      <div class="text-sm">ดูหน้า "กลัวที่แคบ" →</div>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="showPage(8)">
+      <div style="font-size:1.6rem;margin-bottom:.3rem">❓</div>
+      <strong>มีคำถามอื่น ๆ</strong>
+      <div class="text-sm">ดูหน้า "คำถามที่พบบ่อย" →</div>
+    </div>
+  </div>
+
+  <div class="box-teal" style="margin-top:1rem">
+    <div class="box-title">💛 ข้อความสร้างความมั่นใจ</div>
+    การตรวจ MRI เป็นการตรวจที่ปลอดภัย ไม่มีรังสีเอกซ์ ไม่เจ็บตัว
+    ทีมเจ้าหน้าที่ของเราพร้อมอยู่เคียงข้างคุณตลอดการตรวจ<br>
+    <strong>หากมีข้อสงสัยหรือความกังวลใด ๆ สามารถถามเจ้าหน้าที่ได้ทุกเมื่อ</strong>
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(1)">📖 เริ่มเรียนรู้เลย</button>
+    <button class="cta-btn outline" onclick="showPage(9)">📞 ติดต่อหน่วย MRI</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 2 — MRI คืออะไร
+═══════════════════════════════════════════ -->
+<div class="page" id="pg1">
+  <div class="hero">
+    <div class="hero-icon">🧲</div>
+    <h1>MRI คืออะไร?</h1>
+    <p>รู้จักเครื่องมือที่ช่วยให้แพทย์เห็น "ภายในร่างกาย" ได้อย่างชัดเจน</p>
+  </div>
+
+  <div class="sec-title">🔬 MRI คืออะไร?</div>
+  <div class="card">
+    <p><strong>MRI</strong> ย่อมาจาก <em>Magnetic Resonance Imaging</em> แปลว่า <strong>การถ่ายภาพด้วยคลื่นแม่เหล็กไฟฟ้า</strong></p>
+    <hr class="divider">
+    <p>พูดง่าย ๆ คือ เครื่อง MRI ใช้ <strong>คลื่นแม่เหล็กและคลื่นวิทยุ</strong> สร้างภาพอวัยวะภายในร่างกายของคุณ โดยที่ไม่ต้องผ่าตัด และ <strong>ไม่มีรังสีเอกซ์</strong></p>
+  </div>
+
+  <div class="sec-title">⚙️ MRI ทำงานอย่างไร?</div>
+  <div class="card">
+    <ul class="bullet">
+      <li>เครื่อง MRI มีลักษณะเป็น <strong>ท่อกลมขนาดใหญ่</strong></li>
+      <li>คุณจะนอนบนเตียงที่ค่อย ๆ เลื่อนเข้าไปในเครื่อง</li>
+      <li>เครื่องส่งคลื่นแม่เหล็กเข้าสู่ร่างกาย กระทบโมเลกุลน้ำในเซลล์</li>
+      <li>คอมพิวเตอร์ประมวลผลสัญญาณออกมาเป็นภาพที่แพทย์ใช้วินิจฉัย</li>
+    </ul>
+    <hr class="divider">
+    <div class="box-amber" style="margin-bottom:0">
+      📢 <strong>เสียงที่ได้ยินระหว่างตรวจ</strong><br>
+      เครื่องจะมีเสียงเคาะ เสียงหึ่งเป็นจังหวะ — <strong>เป็นเรื่องปกติ ไม่ต้องตกใจ</strong>
+    </div>
+  </div>
+
+  <div class="sec-title">🩺 MRI ตรวจอะไรได้บ้าง?</div>
+  <div class="grid-2">
+    <div class="card"><strong>🧠 สมองและไขสันหลัง</strong><br><span class="text-sm">โรคหลอดเลือดสมอง เนื้องอก ปลอกประสาทเสื่อม</span></div>
+    <div class="card"><strong>🦴 กระดูกและข้อต่อ</strong><br><span class="text-sm">หมอนรองกระดูก เข่า กระดูกสันหลัง</span></div>
+    <div class="card"><strong>❤️ หัวใจและหลอดเลือด</strong><br><span class="text-sm">กล้ามเนื้อหัวใจ หลอดเลือดโป่งพอง</span></div>
+    <div class="card"><strong>🫀 ช่องท้องและอุ้งเชิงกราน</strong><br><span class="text-sm">ตับ ไต มดลูก รังไข่ ลำไส้</span></div>
+  </div>
+
+  <div class="sec-title">🔄 MRI ต่างจาก CT Scan อย่างไร?</div>
+  <div class="grid-2">
+    <div class="card">
+      <div style="color:var(--blue-deep);font-weight:700;margin-bottom:.4rem">🧲 MRI</div>
+      <ul class="bullet">
+        <li>ใช้คลื่นแม่เหล็ก — <strong>ไม่มีรังสีเอกซ์</strong></li>
+        <li>เห็นเนื้อเยื่ออ่อนชัดเจนมาก</li>
+        <li>ใช้เวลา 20–60 นาที</li>
+        <li>มีเสียงดังระหว่างตรวจ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div style="color:var(--gray-600);font-weight:700;margin-bottom:.4rem">☢️ CT Scan</div>
+      <ul class="bullet">
+        <li>ใช้รังสีเอกซ์</li>
+        <li>ตรวจเร็วกว่า</li>
+        <li>เหมาะกับกระดูกและอวัยวะบางชนิด</li>
+        <li>เสียงเงียบกว่า</li>
+      </ul>
+    </div>
+  </div>
+  <p class="text-sm" style="margin-bottom:1rem">แพทย์จะเลือกการตรวจที่เหมาะสมกับอาการของคุณที่สุด</p>
+
+  <div class="sec-title">🛡️ MRI ปลอดภัยหรือไม่?</div>
+  <div class="box-green">
+    <div class="box-title">✅ MRI ปลอดภัยสำหรับคนส่วนใหญ่</div>
+    <ul class="bullet">
+      <li>ไม่มีรังสีเอกซ์</li>
+      <li>ไม่เจ็บปวดระหว่างตรวจ</li>
+      <li>ใช้มาทั่วโลกกว่า 40 ปี</li>
+      <li>ทำได้ทั้งเด็กและผู้สูงอายุ</li>
+    </ul>
+  </div>
+  <div class="box-amber">
+    ⚠️ กรณีที่มีโลหะในร่างกายหรือตั้งครรภ์ ต้องแจ้งเจ้าหน้าที่ก่อนตรวจ
+    <a href="#" onclick="showPage(5);return false;" style="color:var(--blue-deep);font-weight:600"> → ดูรายละเอียดในหน้าข้อห้าม</a>
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(3)">▶ ดูขั้นตอนการตรวจ</button>
+    <button class="cta-btn outline" onclick="showPage(4)">📋 การเตรียมตัว</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 3 — ประโยชน์
+═══════════════════════════════════════════ -->
+<div class="page" id="pg2">
+  <div class="hero">
+    <div class="hero-icon">💡</div>
+    <h1>ประโยชน์ของการตรวจ MRI</h1>
+    <p>ทำไมแพทย์จึงแนะนำให้ตรวจ MRI?</p>
+  </div>
+
+  <div class="sec-title">🏆 ข้อดีของการตรวจ MRI</div>
+  <div class="card">
+    <ul class="bullet">
+      <li>เห็นรายละเอียดของเนื้อเยื่ออ่อนได้ <strong>ชัดเจนมาก</strong></li>
+      <li>ตรวจได้โดย <strong>ไม่ต้องผ่าตัด</strong></li>
+      <li>ไม่ใช้รังสีเอกซ์ — ปลอดภัยในหลายกรณี</li>
+      <li>ตรวจได้หลายส่วนของร่างกายในครั้งเดียว</li>
+      <li>ช่วยให้แพทย์วางแผนการรักษาได้อย่างแม่นยำ</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">🩺 โรคที่ MRI ช่วยวินิจฉัยได้</div>
+  <div class="grid-2">
+    <div class="card">
+      <strong>🧠 สมองและระบบประสาท</strong>
+      <ul class="bullet" style="margin-top:.4rem">
+        <li>โรคหลอดเลือดสมอง / อัมพฤกษ์</li>
+        <li>เนื้องอกในสมอง</li>
+        <li>โรคปลอกประสาทเสื่อมแข็ง (MS)</li>
+        <li>โรคลมชัก</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>🦴 กระดูกและข้อต่อ</strong>
+      <ul class="bullet" style="margin-top:.4rem">
+        <li>หมอนรองกระดูกทับเส้นประสาท</li>
+        <li>เข่าอักเสบ / เอ็นฉีก</li>
+        <li>กระดูกสันหลังเสื่อม</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>🫀 ช่องท้องและอุ้งเชิงกราน</strong>
+      <ul class="bullet" style="margin-top:.4rem">
+        <li>ก้อนเนื้อในตับ ไต มดลูก</li>
+        <li>มะเร็งลำไส้ใหญ่</li>
+        <li>ซีสต์รังไข่</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>❤️ หัวใจและหลอดเลือด</strong>
+      <ul class="bullet" style="margin-top:.4rem">
+        <li>โรคกล้ามเนื้อหัวใจ</li>
+        <li>หลอดเลือดโป่งพอง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-title">💬 ตัวอย่างสถานการณ์จริง</div>
+  <div class="card">
+    <p>🔹 <strong>คุณป้าอายุ 65 ปี</strong> มีอาการปวดหลังเรื้อรัง<br>
+    → แพทย์สั่ง MRI กระดูกสันหลัง เพื่อดูว่าหมอนรองกระดูกกดทับเส้นประสาทหรือไม่</p>
+    <hr class="divider">
+    <p>🔹 <strong>ลูกชายอายุ 40 ปี</strong> มีอาการปวดหัวรุนแรงบ่อยครั้ง<br>
+    → แพทย์สั่ง MRI สมอง เพื่อตัดโรคหลอดเลือดและเนื้องอกออก</p>
+    <hr class="divider">
+    <p>🔹 <strong>คุณแม่อายุ 55 ปี</strong> ตรวจพบก้อนที่เต้านม<br>
+    → แพทย์สั่ง MRI เพื่อดูขอบเขตของก้อนก่อนวางแผนรักษา</p>
+  </div>
+
+  <div class="box-amber">
+    ⚠️ <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก</strong>
+    เนื้อหานี้จัดทำเพื่อให้ความรู้เบื้องต้นเท่านั้น
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(3)">▶ ดูขั้นตอนการตรวจ</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 4 — ขั้นตอนการตรวจ
+═══════════════════════════════════════════ -->
+<div class="page" id="pg3">
+  <div class="hero">
+    <div class="hero-icon">🗂️</div>
+    <h1>ขั้นตอนการตรวจ MRI</h1>
+    <p>รู้ขั้นตอนล่วงหน้า ช่วยให้คุณรู้สึกมั่นใจและไม่ตื่นเต้น</p>
+  </div>
+
+  <div class="sec-title">📋 ลำดับขั้นตอนทั้งหมด</div>
+  <ul class="step-list">
+    <li class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>การลงทะเบียน</h3>
+        <ul>
+          <li>มาถึงโรงพยาบาลก่อนเวลานัด <strong>15–30 นาที</strong></li>
+          <li>นำบัตรประชาชนและใบนัดมาแสดงที่เคาน์เตอร์</li>
+          <li>เจ้าหน้าที่ตรวจสอบข้อมูลและยืนยันการนัดหมาย</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>การซักประวัติ</h3>
+        <ul>
+          <li>เจ้าหน้าที่จะถามประวัติสุขภาพของคุณ</li>
+          <li>แจ้งหากมี: โลหะในร่างกาย / ประวัติผ่าตัด / การตั้งครรภ์ / โรคประจำตัว / ยาที่รับประทาน</li>
+          <li>ลงนามในแบบฟอร์มยินยอม</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>การเปลี่ยนชุด</h3>
+        <ul>
+          <li>เจ้าหน้าที่จะให้ชุดของโรงพยาบาลสวมใส่</li>
+          <li>ถอดสิ่งของโลหะทั้งหมด: นาฬิกา แหวน ต่างหู คลิปผม</li>
+          <li>ฝากกระเป๋า โทรศัพท์ และของมีค่าไว้ที่ล็อกเกอร์</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>เตรียมตัวก่อนเข้าห้องตรวจ</h3>
+        <ul>
+          <li>เจ้าหน้าที่จะพาคุณเข้าห้องตรวจ</li>
+          <li>คุณจะนอนลงบนเตียงที่นุ่มสบาย</li>
+          <li>หากต้องฉีดสารทึบรังสี เจ้าหน้าที่จะแทงเส้นเลือดไว้ก่อน</li>
+          <li>สวมที่อุดหูเพื่อลดเสียง (หากต้องการ)</li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>ระหว่างการตรวจ</h3>
+        <ul>
+          <li>เตียงจะค่อย ๆ เลื่อนเข้าไปในเครื่อง MRI</li>
+          <li><strong>ต้องนอนนิ่ง ๆ</strong> อย่าขยับร่างกาย</li>
+          <li>จะได้ยินเสียงดังเป็นจังหวะ — เป็นเรื่องปกติ</li>
+          <li>เจ้าหน้าที่ติดต่อคุณผ่านไมโครโฟนตลอดเวลา</li>
+          <li>หากต้องการหยุด กด<strong>ปุ่มแจ้งเหตุฉุกเฉิน</strong>ที่ถืออยู่ในมือ</li>
+          <li>ใช้เวลาประมาณ <strong>20–60 นาที</strong></li>
+        </ul>
+      </div>
+    </li>
+    <li class="step-item">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>หลังการตรวจ</h3>
+        <ul>
+          <li>เตียงเลื่อนออกมา เจ้าหน้าที่จะช่วยพาคุณลุกขึ้น</li>
+          <li>เปลี่ยนชุดและรับของมีค่าคืน</li>
+          <li>รับประทานอาหารและน้ำได้ตามปกติ</li>
+          <li>แพทย์แจ้งผลตามนัดหมาย (ปกติ <strong>1–3 วันทำการ</strong>)</li>
+          <li>หากได้รับการฉีดสาร: ดื่มน้ำมาก ๆ ในวันนั้น</li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+
+  <div class="box-amber">
+    ⚠️ <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก</strong>
+    ระยะเวลาและขั้นตอนอาจแตกต่างกันในแต่ละสถานพยาบาล
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(4)">▶ ดูการเตรียมตัว</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 5 — การเตรียมตัว
+═══════════════════════════════════════════ -->
+<div class="page" id="pg4">
+  <div class="hero">
+    <div class="hero-icon">✅</div>
+    <h1>การเตรียมตัวก่อนมาตรวจ MRI</h1>
+    <p>การเตรียมตัวที่ถูกต้อง ช่วยให้การตรวจเป็นไปอย่างราบรื่นและปลอดภัย</p>
+  </div>
+
+  <div class="sec-title">👗 เสื้อผ้าที่ควรสวมใส่มา</div>
+  <div class="box-green">
+    <ul class="bullet">
+      <li>เสื้อผ้าสบาย ๆ ที่ถอดง่าย</li>
+      <li>ไม่มีโลหะ เช่น ซิป กระดุมโลหะ ตะขอ</li>
+      <li>รองเท้าแบบสวม (ถอดง่าย)</li>
+      <li>หากสวมชุดที่มีโลหะ เจ้าหน้าที่จะให้ชุดโรงพยาบาลแทน</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">❌ สิ่งที่ต้องถอดออกก่อนเข้าห้องตรวจ</div>
+  <div class="box-red">
+    <ul class="bullet">
+      <li>นาฬิกา แหวน กำไล สร้อย ต่างหู</li>
+      <li>แว่นตา คลิปผม / กิ๊บผม</li>
+      <li>เข็มขัด กระดุมโลหะ</li>
+      <li>อุปกรณ์ช่วยฟัง (Hearing Aid)</li>
+      <li>ฟันปลอมชนิดถอดได้</li>
+      <li>แผ่นแปะยา (อาจมีโลหะ)</li>
+      <li>ยกทรงที่มีโครงลวด</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">🍽️ การรับประทานอาหารและน้ำ</div>
+  <div class="box-amber">
+    ⚠️ <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก</strong>
+    เพราะการเตรียมตัวอาจแตกต่างกันขึ้นอยู่กับส่วนที่ตรวจ
+  </div>
+  <div class="card">
+    <ul class="bullet">
+      <li><strong>ตรวจสมอง / กระดูก / ข้อต่อ</strong> → ส่วนใหญ่ไม่ต้องงดอาหาร</li>
+      <li><strong>ตรวจช่องท้อง / อุ้งเชิงกราน</strong> → อาจต้องงดอาหาร 4–6 ชั่วโมง</li>
+      <li><strong>กรณีฉีดสารทึบรังสี</strong> → มักต้องงดน้ำและอาหาร</li>
+    </ul>
+    <hr class="divider">
+    <p>📌 สงสัยว่าต้องงดหรือไม่? → <strong>โทรถามหน่วย MRI ก่อนวันนัด</strong></p>
+  </div>
+
+  <div class="sec-title">💊 ยาประจำตัว</div>
+  <div class="card">
+    <ul class="bullet">
+      <li>รับประทานยาประจำต่อเนื่องตามปกติ (เว้นแต่แพทย์สั่งเป็นอย่างอื่น)</li>
+      <li>นำยาทั้งหมดมาให้เจ้าหน้าที่ดูก่อนตรวจ</li>
+      <li>แจ้งหากรับประทานยาเบาหวาน / ยาละลายลิ่มเลือด / ยาไต</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">📄 เอกสารที่ต้องนำมา</div>
+  <div class="box-blue">
+    <ul class="bullet">
+      <li>บัตรประชาชน / บัตรผู้ป่วย</li>
+      <li>ใบนัดตรวจ MRI</li>
+      <li>ผลตรวจเลือด (กรณีที่แพทย์สั่ง)</li>
+      <li>ภาพ MRI / CT เก่า (หากมี)</li>
+      <li>ใบส่งตัว (กรณีใช้สิทธิการรักษา)</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">🕐 เวลาที่ควรมาถึง</div>
+  <div class="box-teal">
+    มาถึงก่อนเวลานัด <strong>15–30 นาที</strong>
+    เพื่อให้มีเวลาลงทะเบียน ซักประวัติ และเตรียมตัวได้ครบถ้วน
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(5)">▶ ดูข้อควรระวัง</button>
+    <button class="cta-btn outline" onclick="showPage(8)">❓ คำถามที่พบบ่อย</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 6 — ข้อห้าม / Checklist
+═══════════════════════════════════════════ -->
+<div class="page" id="pg5">
+  <div class="hero">
+    <div class="hero-icon">⚠️</div>
+    <h1>ข้อควรระวังและข้อห้ามในการตรวจ MRI</h1>
+    <p>โปรดตอบคำถามต่อไปนี้ตามความเป็นจริง เพื่อความปลอดภัยของคุณ</p>
+  </div>
+
+  <div class="box-amber">
+    <strong>🛡️ ทำไมต้องตรวจสอบ?</strong><br>
+    เครื่อง MRI ใช้แม่เหล็กกำลังสูงมาก หากมีโลหะในร่างกาย อาจเกิดความร้อน การเคลื่อนที่ หรืออุปกรณ์ทำงานผิดปกติ ซึ่งอาจเป็นอันตราย
+    <strong>การแจ้งข้อมูลตามความเป็นจริง คือการปกป้องตัวคุณเอง</strong>
+  </div>
+
+  <div class="sec-title">📋 Checklist — ข้อมูลที่ต้องแจ้งเจ้าหน้าที่</div>
+  <p class="text-sm" style="margin-bottom:.75rem">กดเพื่อทำเครื่องหมายรายการที่คุณตรวจสอบแล้ว</p>
+
+  <div class="card">
+    <div style="font-weight:700;color:var(--red-text);margin-bottom:.5rem">❤️ เครื่องกระตุ้นหัวใจ (Pacemaker)</div>
+    <ul class="checklist" id="cl1">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีเครื่องกระตุ้นหัวใจฝังในร่างกายหรือไม่?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีเครื่องช่วยหัวใจชนิดอื่น ๆ หรือไม่?</div></li>
+    </ul>
+    <div class="box-red" style="margin-top:.75rem;margin-bottom:0;font-size:14px">⚠️ เครื่องกระตุ้นหัวใจบางรุ่นไม่สามารถเข้าตรวจ MRI ได้ → แจ้งเจ้าหน้าที่ทันที</div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;color:var(--blue-deep);margin-bottom:.5rem">🔩 โลหะในร่างกาย</div>
+    <ul class="checklist">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">เคยผ่าตัดและมีการฝังโลหะ เช่น สกรู แผ่นโลหะ ลวดดาม?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีเหล็กดัดฟัน (Braces) หรือรากฟันเทียม (Implant)?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">เคยได้รับบาดเจ็บจากสะเก็ดโลหะหรือกระสุน?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีคลิปหนีบหลอดเลือดในสมอง (Aneurysm clip)?</div></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;color:var(--blue-deep);margin-bottom:.5rem">🔧 อุปกรณ์ทางการแพทย์ฝังในร่างกาย</div>
+    <ul class="checklist">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">เครื่องกระตุ้นไขสันหลัง (Spinal cord stimulator)</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">ปั๊มยาฝังในร่างกาย (Infusion pump)</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">ประสาทหูเทียม (Cochlear implant)</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">ลิ้นหัวใจเทียม (Artificial heart valve)</div></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;color:var(--teal);margin-bottom:.5rem">🤰 การตั้งครรภ์</div>
+    <ul class="checklist">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">คุณตั้งครรภ์อยู่หรือไม่?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีความเป็นไปได้ที่จะตั้งครรภ์หรือไม่?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">อยู่ระหว่างให้นมบุตรหรือไม่?</div></li>
+    </ul>
+    <div class="box-amber" style="margin-top:.75rem;margin-bottom:0;font-size:14px">⚠️ MRI ในไตรมาสแรกของการตั้งครรภ์ควรหลีกเลี่ยง → ปรึกษาแพทย์ก่อนตรวจเสมอ</div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;color:var(--gray-600);margin-bottom:.5rem">🎨 รอยสักและแผ่นแปะ</div>
+    <ul class="checklist">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีรอยสักขนาดใหญ่? (สีสักบางชนิดมีส่วนผสมโลหะ)</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีแผ่นแปะยาหรือแผ่นแปะนิโคติน?</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มีต่างหูหรือ Piercing ที่ถอดไม่ได้?</div></li>
+    </ul>
+  </div>
+
+  <div class="box-amber">
+    ⚠️ <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก</strong>
+    แนวทางอาจแตกต่างกันในแต่ละสถานพยาบาล
+  </div>
+
+  <div class="cta-row">
+    <button class="cta-btn" onclick="showPage(6)">▶ การฉีดสารทึบรังสี</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 7 — สารทึบรังสี
+═══════════════════════════════════════════ -->
+<div class="page" id="pg6">
+  <div class="hero">
+    <div class="hero-icon">💉</div>
+    <h1>MRI ร่วมกับการฉีดสารทึบรังสี</h1>
+    <p>บางกรณีแพทย์จำเป็นต้องฉีดสาร เพื่อให้เห็นภาพชัดเจนขึ้น — มีความปลอดภัยสูง</p>
+  </div>
+
+  <div class="sec-title">🔬 สารทึบรังสีคืออะไร?</div>
+  <div class="card">
+    <p>สารที่ใช้ใน MRI เรียกว่า <strong>สารแกโดลิเนียม (Gadolinium)</strong></p>
+    <p style="margin-top:.5rem">ช่วยให้ภาพ MRI มีความชัดเจนมากขึ้น โดยเฉพาะ<strong>หลอดเลือด เนื้องอก</strong> และ<strong>การอักเสบ</strong></p>
+  </div>
+
+  <div class="sec-title">🩺 เหตุใดจึงต้องฉีด?</div>
+  <div class="card">
+    <ul class="bullet">
+      <li>ต้องการดูหลอดเลือดในสมองหรือหัวใจ</li>
+      <li>ตรวจหาเนื้องอกหรือมะเร็ง</li>
+      <li>ดูการอักเสบหรือการติดเชื้อ</li>
+      <li>ประเมินผลหลังการรักษา</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">⚙️ ขั้นตอนการฉีดสาร</div>
+  <ul class="step-list">
+    <li class="step-item"><div class="step-num">1</div><div class="step-body"><p>เจ้าหน้าที่แทงเส้นเลือดดำที่แขน</p></div></li>
+    <li class="step-item"><div class="step-num">2</div><div class="step-body"><p>ระหว่างตรวจ เครื่องฉีดสารเข้าร่างกายโดยอัตโนมัติ</p></div></li>
+    <li class="step-item"><div class="step-num">3</div><div class="step-body"><p>อาจรู้สึกเย็น ๆ หรืออุ่น ๆ เล็กน้อย — <strong>เป็นเรื่องปกติ</strong></p></div></li>
+    <li class="step-item"><div class="step-num">4</div><div class="step-body"><p>หลังตรวจเสร็จ เจ้าหน้าที่จะถอดสายออก</p></div></li>
+  </ul>
+
+  <div class="sec-title">🛡️ ความปลอดภัย</div>
+  <div class="box-green">
+    <ul class="bullet">
+      <li>ผ่านการรับรองจากองค์กรด้านสุขภาพทั่วโลก</li>
+      <li>ร่างกายขับออกทางปัสสาวะภายใน 24 ชั่วโมง</li>
+      <li>ปลอดภัยสำหรับคนส่วนใหญ่</li>
+    </ul>
+  </div>
+
+  <div class="box-amber">
+    ⚠️ <strong>แจ้งเจ้าหน้าที่ทันทีหากคุณ:</strong><br>
+    มีโรคไตเรื้อรัง / เคยแพ้สารทึบรังสี / ตั้งครรภ์หรือให้นมบุตร
+  </div>
+
+  <div class="sec-title">🩸 การตรวจการทำงานของไต</div>
+  <div class="card">
+    อาจต้องตรวจเลือดดูการทำงานของไตก่อนฉีดสาร เพราะไตทำหน้าที่ขับสารออกจากร่างกาย<br>
+    → <strong>แจ้งเจ้าหน้าที่หากมีโรคไตหรือเบาหวาน</strong>
+  </div>
+
+  <div class="sec-title">⚠️ อาการที่อาจพบได้หลังฉีดสาร</div>
+  <div class="grid-2">
+    <div class="box-blue">
+      <div class="box-title">อาการเล็กน้อย (พบได้น้อย)</div>
+      <ul class="bullet">
+        <li>คัน บวม หรือผื่นที่ผิวหนัง</li>
+        <li>คลื่นไส้เล็กน้อย</li>
+        <li>ปวดศีรษะเล็กน้อย</li>
+      </ul>
+    </div>
+    <div class="box-red">
+      <div class="box-title">🚨 แจ้งเจ้าหน้าที่ทันทีหากมี</div>
+      <ul class="bullet">
+        <li>หายใจลำบาก</li>
+        <li>ลิ้นหรือใบหน้าบวม</li>
+        <li>วิงเวียนหรือใจสั่น</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box-amber">
+    ⚠️ <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก</strong>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 8 — กลัวที่แคบ
+═══════════════════════════════════════════ -->
+<div class="page" id="pg7">
+  <div class="hero" style="background:linear-gradient(135deg, #1a6e5a 0%, #1a9e8a 100%)">
+    <div class="hero-icon">💛</div>
+    <h1>หากคุณกลัวที่แคบ</h1>
+    <p>คุณไม่ได้เป็นคนเดียว — เราเข้าใจความรู้สึกของคุณ และมีวิธีช่วยเหลือ</p>
+  </div>
+
+  <div class="sec-title">😰 ความกลัวที่แคบ (Claustrophobia) คืออะไร?</div>
+  <div class="card">
+    คือความรู้สึก<strong>กลัว อึดอัด หรือวิตกกังวล</strong> เมื่ออยู่ในพื้นที่แคบหรือปิด<br>
+    เป็นเรื่องปกติมาก และพบได้บ่อยในผู้ที่มาตรวจ MRI
+  </div>
+
+  <div class="sec-title">😟 อาการที่อาจเกิดขึ้น</div>
+  <div class="grid-2">
+    <div class="card">
+      <ul class="bullet">
+        <li>รู้สึกอึดอัด หายใจไม่สะดวก</li>
+        <li>ใจสั่น หัวใจเต้นเร็ว</li>
+      </ul>
+    </div>
+    <div class="card">
+      <ul class="bullet">
+        <li>เหงื่อออก มือสั่น</li>
+        <li>อยากออกจากเครื่อง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-title">✅ วิธีรับมือก่อนวันตรวจ</div>
+  <div class="card">
+    <ul class="bullet">
+      <li>🔹 <strong>แจ้งเจ้าหน้าที่ล่วงหน้า</strong>ว่าคุณกลัวที่แคบ → เจ้าหน้าที่จะเตรียมความช่วยเหลือ</li>
+      <li>🔹 <strong>ขอดูห้องตรวจก่อน</strong> (ถ้าเป็นไปได้) → การเห็นสภาพจริงช่วยลดความกลัว</li>
+      <li>🔹 <strong>นำคนที่คุณไว้วางใจมาด้วย</strong> → ญาติสามารถอยู่ใกล้ ๆ ได้</li>
+      <li>🔹 <strong>ปรึกษาแพทย์เรื่องยาคลายกังวล</strong> (ในบางกรณีที่จำเป็น)</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">🌬️ เทคนิคผ่อนคลายระหว่างตรวจ</div>
+  <div class="card">
+    <div style="background:var(--blue-pale);border-radius:var(--radius-sm);padding:1rem;margin-bottom:.75rem">
+      <strong>การหายใจแบบผ่อนคลาย:</strong>
+      <ol style="padding-left:1.3rem;margin-top:.4rem">
+        <li>หายใจเข้าช้า ๆ ทางจมูก นับ 1–2–3–4</li>
+        <li>กลั้นหายใจเล็กน้อย นับ 1–2</li>
+        <li>หายใจออกช้า ๆ ทางปาก นับ 1–2–3–4–5–6</li>
+        <li>ทำซ้ำจนรู้สึกผ่อนคลาย</li>
+      </ol>
+    </div>
+    <ul class="bullet">
+      <li>💡 หลับตาและจินตนาการว่าอยู่ในสถานที่ที่ชื่นชอบ</li>
+      <li>💡 นับตัวเลขในใจช้า ๆ</li>
+      <li>💡 ฟังเพลงผ่านหูฟัง (เจ้าหน้าที่อาจจัดให้ได้)</li>
+    </ul>
+  </div>
+
+  <div class="box-teal">
+    💛 <strong>คุณสามารถหยุดการตรวจได้ตลอดเวลา</strong><br>
+    เพียงกดปุ่มแจ้งเหตุฉุกเฉินที่อยู่ในมือคุณ — เจ้าหน้าที่จะหยุดเครื่องทันที<br>
+    <strong>ไม่ต้องอายหรือกังวล เจ้าหน้าที่พร้อมช่วยเสมอ</strong>
+  </div>
+
+  <div class="box-blue" style="margin-top:1rem">
+    💡 เครื่อง MRI บางรุ่นเป็นแบบเปิด <strong>(Open MRI)</strong> เหมาะสำหรับผู้ที่กลัวที่แคบ<br>
+    สอบถามเจ้าหน้าที่ว่าโรงพยาบาลของคุณมีให้บริการหรือไม่
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 9 — FAQ
+═══════════════════════════════════════════ -->
+<div class="page" id="pg8">
+  <div class="hero">
+    <div class="hero-icon">❓</div>
+    <h1>คำถามที่พบบ่อย</h1>
+    <p>รวบรวมคำถามที่ผู้ป่วยถามบ่อย — พร้อมคำตอบที่เข้าใจง่าย</p>
+  </div>
+
+  <div class="sec-title">📋 20 คำถาม–คำตอบ</div>
+  <div id="faqList"></div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     หน้า 10 — ติดต่อ
+═══════════════════════════════════════════ -->
+<div class="page" id="pg9">
+  <div class="hero">
+    <div class="hero-icon">📞</div>
+    <h1>ติดต่อหน่วย MRI</h1>
+    <p>มีข้อสงสัยหรือต้องการความช่วยเหลือ — ทีมงานของเราพร้อมให้บริการ</p>
+  </div>
+
+  <div class="sec-title">📋 ข้อมูลการติดต่อ</div>
+  <div class="grid-2">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">เบอร์โทรศัพท์</div>
+        <div class="contact-val">[กรอกเบอร์โทร]</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">อีเมล</div>
+        <div class="contact-val">[กรอกอีเมล]</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">ที่ตั้ง</div>
+        <div class="contact-val">[อาคาร / ชั้น / ห้อง]</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <div class="contact-label">เวลาให้บริการ</div>
+        <div class="contact-val">[จ–ศ 08.00–16.30 น.]</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">🗺️ แผนที่และเส้นทาง</div>
+  <div class="card">
+    <div style="background:var(--gray-200);border-radius:var(--radius-sm);height:200px;display:flex;align-items:center;justify-content:center;color:var(--gray-600);font-size:14px;margin-bottom:.75rem">
+      🗺️ ฝัง Google Maps ที่นี่ใน Google Sites
+    </div>
+    <ul class="bullet">
+      <li>จุดสังเกต: [กรอกจุดสังเกตหรืออาคารใกล้เคียง]</li>
+      <li>ที่จอดรถ: [กรอกข้อมูล]</li>
+      <li>ทางเข้าสำหรับผู้พิการ: [กรอกข้อมูล]</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">⏰ Checklist ก่อนวันนัด</div>
+  <div class="card">
+    <ul class="checklist">
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">อ่านคำแนะนำการเตรียมตัว (หน้าเตรียมตัว) ให้ครบถ้วน</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">ตรวจสอบว่ามีข้อห้ามในการตรวจหรือไม่ (หน้าข้อห้าม)</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">เตรียมเอกสาร: บัตรประชาชน + ใบนัด</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">มาถึงก่อนเวลานัด 15–30 นาที</div></li>
+      <li><div class="chk" onclick="toggleChk(this)"></div><div class="chk-text">หากมีข้อสงสัย โทรสอบถามล่วงหน้า</div></li>
+    </ul>
+  </div>
+
+  <div class="sec-title">📅 กรณีเลื่อนนัดหรือยกเลิกนัด</div>
+  <div class="box-amber">
+    <ul class="bullet">
+      <li>โทรแจ้งล่วงหน้า <strong>อย่างน้อย 24 ชั่วโมง</strong></li>
+      <li>แจ้งชื่อ–นามสกุล และวันเวลานัดของคุณ</li>
+      <li>ขอนัดใหม่กับเจ้าหน้าที่</li>
+    </ul>
+    <hr class="divider">
+    <p class="text-sm">⚠️ หากไม่แจ้งล่วงหน้า อาจทำให้ผู้ป่วยรายอื่นเสียโอกาส</p>
+  </div>
+
+  <div class="box-teal" style="margin-top:1.25rem;text-align:center">
+    💛 <strong>ขอบคุณที่ไว้วางใจในบริการของเรา</strong><br>
+    เราพร้อมดูแลคุณด้วยความใส่ใจ ทุกขั้นตอน
+  </div>
+</div>
+
+</main>
+
+<footer>
+  เนื้อหานี้จัดทำเพื่อให้ความรู้เบื้องต้นแก่ผู้ป่วยเท่านั้น<br>
+  <strong>กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลักเสมอ</strong>
+</footer>
+
+<script>
+var pages = document.querySelectorAll('.page');
+var navBtns = document.querySelectorAll('.nav-btn');
+
+function showPage(i) {
+  pages.forEach(function(p, j) { p.classList.toggle('active', j === i); });
+  navBtns.forEach(function(b, j) { b.classList.toggle('active', j === i); });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleChk(el) {
+  el.classList.toggle('checked');
+  var txt = el.nextElementSibling;
+  txt.classList.toggle('checked');
+}
+
+var faqs = [
+  ['MRI เจ็บหรือไม่?', 'ไม่เจ็บเลย การตรวจ MRI ไม่มีการเจาะ ผ่าตัด หรือรังสีเอกซ์ คุณเพียงแค่นอนนิ่ง ๆ ในเครื่อง'],
+  ['MRI ใช้เวลานานเท่าไร?', 'ประมาณ 20–60 นาที ขึ้นอยู่กับส่วนที่ตรวจ บางกรณีอาจนานกว่านั้น'],
+  ['ต้องงดน้ำและอาหารก่อนตรวจหรือไม่?', 'ขึ้นอยู่กับส่วนที่ตรวจ กรุณาปฏิบัติตามคำแนะนำของแพทย์หรือเจ้าหน้าที่ที่ดูแลท่านเป็นหลัก'],
+  ['มีเหล็กดัดฟัน (Braces) ตรวจได้หรือไม่?', 'โดยทั่วไปตรวจได้ แต่ภาพบริเวณนั้นอาจมีสัญญาณรบกวนบ้าง แจ้งเจ้าหน้าที่ก่อนตรวจทุกครั้ง'],
+  ['มีรอยสักตรวจได้หรือไม่?', 'ส่วนใหญ่ตรวจได้ แต่สีสักบางชนิดมีส่วนผสมของโลหะ อาจรู้สึกร้อนเล็กน้อยบริเวณรอยสัก แจ้งเจ้าหน้าที่ทุกครั้ง'],
+  ['สามารถกลับบ้านได้ทันทีหลังตรวจหรือไม่?', 'ได้ หากไม่ได้รับยาคลายกังวล สามารถกลับบ้านได้ทันที หากได้รับยา ต้องรอให้ยาหมดฤทธิ์ก่อน'],
+  ['แพทย์จะแจ้งผลเมื่อไร?', 'โดยทั่วไปประมาณ 1–3 วันทำการ ขึ้นอยู่กับนโยบายของโรงพยาบาล'],
+  ['ญาติเข้าไปในห้องตรวจด้วยได้หรือไม่?', 'ห้องตรวจ MRI มีแม่เหล็กกำลังสูง ญาติส่วนใหญ่ต้องรอนอกห้อง แต่สามารถอยู่ใกล้ ๆ ได้'],
+  ['ผู้สูงอายุตรวจ MRI ได้หรือไม่?', 'ได้ ไม่มีข้อจำกัดด้านอายุ อาจต้องการความช่วยเหลือพิเศษหากเคลื่อนไหวลำบาก'],
+  ['เด็กตรวจ MRI ได้หรือไม่?', 'ได้ เด็กเล็กอาจต้องรับยาช่วยให้นอนหลับระหว่างตรวจ เพื่อให้ภาพชัดเจน'],
+  ['หญิงตั้งครรภ์ตรวจ MRI ได้หรือไม่?', 'ควรหลีกเลี่ยงในไตรมาสแรก แจ้งแพทย์และเจ้าหน้าที่ทุกครั้งหากตั้งครรภ์หรือสงสัยว่าตั้งครรภ์'],
+  ['ต้องถอดฟันปลอมก่อนตรวจหรือไม่?', 'ฟันปลอมชนิดถอดได้ควรถอดออก ฟันปลอมชนิดติดแน่น แจ้งเจ้าหน้าที่ให้ประเมิน'],
+  ['ใส่แว่นตาเข้าไปได้หรือไม่?', 'ไม่ได้ แว่นตามีโลหะ ต้องถอดออกก่อนเข้าห้องตรวจ'],
+  ['เครื่อง MRI มีเสียงดังมากไหม?', 'มีเสียงเคาะหรือเสียงหึ่งเป็นจังหวะ เจ้าหน้าที่จะให้ที่อุดหูหรือหูฟัง'],
+  ['ไม่สบายระหว่างตรวจ ทำอย่างไร?', 'กดปุ่มแจ้งเหตุฉุกเฉินที่ถืออยู่ในมือ เจ้าหน้าที่จะหยุดเครื่องทันที'],
+  ['มีเครื่องกระตุ้นหัวใจ ตรวจได้หรือไม่?', 'ขึ้นอยู่กับรุ่นและประเภทของเครื่อง แจ้งเจ้าหน้าที่ให้ประเมินก่อนตรวจเสมอ'],
+  ['หลังฉีดสารทึบรังสีต้องระวังอะไร?', 'ดื่มน้ำมาก ๆ เพื่อช่วยขับสารออกจากร่างกาย หากมีอาการผิดปกติแจ้งเจ้าหน้าที่ทันที'],
+  ['ผู้ป่วยโรคไตฉีดสารทึบรังสีได้หรือไม่?', 'ต้องแจ้งแพทย์ก่อนตรวจทุกครั้ง อาจต้องตรวจเลือดดูการทำงานของไตก่อน'],
+  ['ต้องการเลื่อนนัด ทำอย่างไร?', 'โทรแจ้งหน่วย MRI ล่วงหน้าอย่างน้อย 24 ชั่วโมงก่อนวันนัด'],
+  ['ขอสำเนาภาพ MRI ได้หรือไม่?', 'ได้ ขอรับภาพและรายงานผลได้ที่เคาน์เตอร์ห้องฟิล์ม สอบถามรายละเอียดกับเจ้าหน้าที่']
+];
+
+var faqList = document.getElementById('faqList');
+faqs.forEach(function(f, i) {
+  var item = document.createElement('div');
+  item.className = 'faq-item';
+  item.innerHTML =
+    '<button class="faq-q" onclick="toggleFaq(this)">' +
+    '<span>Q' + (i+1) + ': ' + f[0] + '</span>' +
+    '<span class="faq-arrow">▼</span>' +
+    '</button>' +
+    '<div class="faq-a">✅ ' + f[1] + '</div>';
+  faqList.appendChild(item);
+});
+
+function toggleFaq(btn) {
+  btn.parentElement.classList.toggle('open');
+}
+</script>
+</body>
+</html>
